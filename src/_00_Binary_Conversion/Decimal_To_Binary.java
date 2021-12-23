@@ -31,5 +31,28 @@ public class Decimal_To_Binary {
 		 *         
 		 *         43 in decimal is 101011 in binary!
 		 */
+		String binary = convertDecimalToBinary(32);
+		
+	}
+
+	public static String convertDecimalToBinary(int i) {
+		String binStr = "";
+		 do {
+	            // 1. Logical right shift by 1
+	            int quotient = i >>> 1;
+	        
+	            // 2. Check remainder and add '1' or '0'
+	            if( i % 2 != 0 ){
+	                binStr = '1' + binStr;
+	            } else {
+	                binStr = '0' + binStr;
+	            }
+	            
+	            i = quotient;
+	            
+	        // 3. Repeat until number is 0
+	        } while( i != 0 );
+	        
+	        return binStr;
 	}
 }
