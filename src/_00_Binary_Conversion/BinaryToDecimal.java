@@ -1,6 +1,7 @@
 package _00_Binary_Conversion;
 
 public class BinaryToDecimal {
+	String number = "011101";
 	public static void main(String[] args) {
 		// Binary numbers in Java can be represented with the '0b' prefix.
 		// For example:

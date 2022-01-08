@@ -8,11 +8,21 @@ public class BinaryPrinter {
 	//Create a main method to test your methods.
 	
 	public void printByteBinary(byte b) {
-	
+		for (int i = 8; i > 0; i--) {
+			int b2 = b >> (i-1);
+			int b3 = b2 & 1;
+			System.out.println(b3);
+		}
+		
 	}
 	
 	public void printShortBinary(short s) {
-		
+		byte b1;
+		byte b2;
+		b1 = (byte) (s>>8);
+		b2 = (byte) (s);
+		printByteBinary(b1);
+		printByteBinary(b2);
 	}
 	
 	public void printIntBinary(int i) {
