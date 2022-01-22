@@ -7,29 +7,47 @@ public class BinaryPrinter {
 	//Don't be afraid to use the methods that are already complete to finish the others.
 	//Create a main method to test your methods.
 	
-	public void printByteBinary(byte b) {
-		for (int i = 8; i > 0; i--) {
-			int b2 = b >> (i-1);
-			int b3 = b2 & 1;
-			System.out.println(b3);
+	public static void printByteBinary(byte b) {
+		byte bit = (byte) 0b100000;
+		String binaryStr = "";
+		while (bit != 0) {
+			if ((b & bit) != 0) {
+				binaryStr += "1";
+			}else {
+				binaryStr += 0;
+			}
 		}
+		bit = (byte) ((bit & 0xFF)>>>1);
 		
 	}
 	
-	public void printShortBinary(short s) {
-		byte b1;
-		byte b2;
-		b1 = (byte) (s>>8);
-		b2 = (byte) (s);
-		printByteBinary(b1);
-		printByteBinary(b2);
+	public static void printShortBinary(short s) {
+		byte b1 = 0;
+		byte b2 = 0;
+		
+		printByteBinary((byte) (s&0xFF));
+		printByteBinary((byte) ((s&0xFF00)>>8));
 	}
 	
-	public void printIntBinary(int i) {
-		
+	public static void printIntBinary(int i) {
+		short sh = 0;
+		short ort = 0;
+		printShortBinary((short) (i&0xFFFF));
+		printShortBinary((short) ((i&0xFFFF0000)>>16));
 	}
 	
-	public void printLongBinary(long l) {
-		
+	public static void printLongBinary(long l) {
+		printIntBinary ((short) (l&0xFFFFFFFF));
+		printIntBinary ((short) (l&0xFFFFFFFF00000000L)>>32);
+	}
+	public static void main(String[] args) {
+		byte b = (byte) 0b00010111;
+		printByteBinary(b);
+		short s = (short ) 0xFFFF;
+		printShortBinary(s);
+		int i = (int) 0b01010101010101010101010101010101;
+		printIntBinary(i);
+		long l = (long) 0b0101010101010101010101010101010101010101010101010101010101010101L;
+		printLongBinary(l);
 	}
 }
